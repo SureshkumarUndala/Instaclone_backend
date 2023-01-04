@@ -37,10 +37,12 @@ router.post("/login", async (req, res) => {
                 exp: Math.floor(Date.now() / 1000) + (60 * 60),
                 data: user[0]._id
             }, jwtsecretkey);
+            const {_id, fullname, email} =user[0]
 
             return res.json({
                 status: "success",
                 message: "Login success",
+                userinfo: {_id, fullname, email},
                 token
             })
         }
