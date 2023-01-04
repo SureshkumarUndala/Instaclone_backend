@@ -58,7 +58,7 @@ router.post("/register", async (req, res) => {
     console.log(req.body)
     const { fullname, email, password } = req.body  //object destructuring
     if (!fullname || !email || !password) {
-        return res.status(400).json({ error: "one or more mandatory field is empty" })
+        return res.status(400).json({error: "one or more mandatory field is empty" })
     }
 
     //avoid duplicate users
@@ -80,7 +80,7 @@ router.post("/register", async (req, res) => {
         console.log(password)
         user.save()  //save()--> for saving data in the db
             .then(() => {
-                return res.status(201).json({ error: "User Registered successfully" })
+                return res.status(201).json({ status: "User Registered successfully" })
 
             })
             .catch((err) => {
