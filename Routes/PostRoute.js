@@ -43,14 +43,15 @@ router.get("/myposts", async(req,res)=>{
 router.post("/createpost", async (req, res) => {
     console.log(req.user)
     try {
-        const { title, body } = req.body
+        const { title, body, image} = req.body
      
-        if (!title || !body) {
+        if (!title || !body || !image) {
             return res.status(400).json({ error: "one or more mandatory fields empty" })
         }
         const post = await PostModel.create({
             title: title,
             body: body,
+            image:image,
             author: req.user
         })
         post.save()
