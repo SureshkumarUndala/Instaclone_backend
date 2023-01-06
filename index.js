@@ -14,7 +14,7 @@ mongoose.connect("mongodb+srv://UMSA:UMSA@cluster0.t0zfjzv.mongodb.net/?retryWri
 .then(()=>console.log("dbconnected"))
 
 const corsOptions ={
-    origin:'https://instagramcloneapp-client-siv5.onrender.com/', 
+    origin:'http://192.168.248.9:3000 /', 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
