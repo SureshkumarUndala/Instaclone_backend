@@ -37,12 +37,10 @@ router.post("/login", async (req, res) => {
                 exp: Math.floor(Date.now() / 1000) + (60 * 60),
                 data: user[0]._id
             }, jwtsecretkey);
-            const {_id, fullname, email} =user[0]
 
             return res.json({
                 status: "success",
                 message: "Login success",
-                userinfo: {_id, fullname, email},
                 token
             })
         }
@@ -60,7 +58,7 @@ router.post("/register", async (req, res) => {
     console.log(req.body)
     const { fullname, email, password } = req.body  //object destructuring
     if (!fullname || !email || !password) {
-        return res.status(400).json({error: "one or more mandatory field is empty" })
+        return res.status(400).json({ error: "one or more mandatory field is empty" })
     }
 
     //avoid duplicate users
@@ -82,7 +80,7 @@ router.post("/register", async (req, res) => {
         console.log(password)
         user.save()  //save()--> for saving data in the db
             .then(() => {
-                return res.status(201).json({ status: "User Registered successfully" })
+                return res.status(201).json({ error: "User Registered successfully" })
 
             })
             .catch((err) => {

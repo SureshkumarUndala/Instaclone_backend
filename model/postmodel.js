@@ -2,36 +2,31 @@ const mongoose = require("mongoose")
 const ObjectId = mongoose.Schema.ObjectId
 
 const PostSchema = mongoose.Schema({
-    title: {
-        type: String,
-<<<<<<< HEAD
-        required: true
-=======
+    title:{
+        type:String,
         required:true
-      
->>>>>>> e7d23344a480e80cd764ffaf7b73f024a7c353fe
     },
-    body: {
+    body:{
+        type:String,
+        required:true
+    },
+    image:{
         type: String,
-        required: true
+        default:"No image available"
     },
-    image: {
-        type: String,
-        default: "No image available"
-    },
-    comments: [
+    comments:[
         {
-            commentText:String,
-            commentBy:{type:ObjectId,  ref: "UserModel"}
-
+            commentText: String,
+            commentBy: ObjectId
         }
+    
     ],
-    author: {
-        type: ObjectId,
+    author:{
+        type:ObjectId,
         ref: "UserModel"
     }
 
 })
 
-const PostModel = mongoose.model('PostModel', PostSchema)
+const PostModel = mongoose.model('PostModel',PostSchema)
 module.exports = PostModel

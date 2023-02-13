@@ -1,6 +1,5 @@
 const express = require("express")
 const app = express()
-const cors = require('cors')
 const mongoose = require("mongoose")
 const Usermodel = require("./model/user_model")
 const PostModel = require("./model/postmodel")
@@ -13,12 +12,6 @@ const jwtsecretkey = process.env.jwt_secret
 mongoose.connect("mongodb+srv://UMSA:UMSA@cluster0.t0zfjzv.mongodb.net/?retryWrites=true&w=majority")
 .then(()=>console.log("dbconnected"))
 
-const corsOptions ={
-    origin:'*', 
-    credentials:true,            //access-control-allow-credentials:true
-    optionSuccessStatus:200
-}
-app.use(cors(corsOptions));
 app.use("/createpost", (req, res, next) => { 
     if(req.headers.authorization){
         const token = req.headers.authorization?.split("bearer ")[1]
@@ -92,7 +85,6 @@ app.use("/myposts", (req, res, next) => {
     
 }) 
 
-
 app.use("/comment", (req, res, next) => { 
     if(req.headers.authorization){
         const token = req.headers.authorization?.split("bearer ")[1]
@@ -128,6 +120,8 @@ app.use("/comment", (req, res, next) => {
 
     
 }) 
+
+
 
 
 
