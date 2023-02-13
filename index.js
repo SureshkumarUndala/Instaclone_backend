@@ -86,6 +86,41 @@ app.use("/myposts", (req, res, next) => {
 }) 
 
 
+app.use("/comment", (req, res, next) => { 
+    if(req.headers.authorization){
+        const token = req.headers.authorization?.split("bearer ")[1]
+        if(token){
+            //verify token
+            jwt.verify(token, jwtsecretkey, function(err, decoded) {
+      
+                if(err){
+                    return res.status(403).json({
+                        status:"failed",
+                        message:"Not a Valid token"
+                    })
+                }
+                req.user = decoded.data
+                console.log(decoded)
+                next()
+              });
+              
+        }else{
+            return res.status(401).json({
+                status:"Failed",
+                message:"Token is missing"
+    
+            })
+        }
+    }else{
+        return res.status(403).json({
+            status:"Failed",
+            message:"Not authenticated user"
+
+        })
+    }
+
+    
+}) 
 
 
 
