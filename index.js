@@ -7,6 +7,13 @@ const Authentication =require("./Routes/authentication")
 const PostRoute = require("./Routes/PostRoute")
 const jwt = require('jsonwebtoken');
 const jwtsecretkey = process.env.jwt_secret
+const cors = require("cors")
+const corsOptions ={
+    origin:'http://localhost:3000', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
+app.use(cors(corsOptions));
 
 
 mongoose.connect("mongodb+srv://UMSA:UMSA@cluster0.t0zfjzv.mongodb.net/?retryWrites=true&w=majority")
